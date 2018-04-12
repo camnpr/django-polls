@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="投票网,通过python，django，sqlite">
+    <meta name="keywords"  content="python, django, vote, 投票">
+    <title>详情页 - 投票网</title>
+    
+    <!-- Web App Manifest -->
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    
+    <!-- Generic Icon -->
+    <!-- <link rel="shortcut icon" href="/pwa/img/46.png"> -->
+
+    <!-- Chrome Add to Homescreen -->
+    <!-- <link rel="shortcut icon" href="/pwa/img/46.png" sizes="46x46">
+
+    <link rel="apple-touch-icon" href="/pwa/img/46.png" sizes="46x46"> -->
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <!-- <meta name="mobile-web-app-capable" content="yes">
+    <mate name="theme-color" content="#000000"> -->
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="投票网"> -->
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <!-- <meta name="msapplication-TileImage" content="/pwa/img/46.png">
+    <meta name="msapplication-TileColor" content="#3372DF"> -->
+  </head>
+  <!-- hack iOS CSS :active style -->
+  <body ontouchstart="">
+    <h1>{{ question.question_text }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'polls:vote' question.id %}" method="POST">
+      {% csrf_token %}
+      {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+        <label title="得到{{choice.votes}}票" for="choice{{ forloop.counter }}">{{choice.choice_text}}</label><br />
+      {% endfor %}
+      <input type="submit" value="投票" />
+    </form>
+
+  </body>
+</html>
