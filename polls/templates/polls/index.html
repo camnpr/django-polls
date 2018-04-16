@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="投票网,通过python，django，sqlite">
     <meta name="keywords"  content="python, django, vote, 投票">
-    <title>详情页 - 投票网</title>
+    <title>首页 - 投票网</title>
     
     <!-- Web App Manifest -->
     <!-- <link rel="manifest" href="/manifest.json"> -->
@@ -31,6 +31,8 @@
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <!-- <meta name="msapplication-TileImage" content="/pwa/img/46.png">
     <meta name="msapplication-TileColor" content="#3372DF"> -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
   </head>
   <!-- hack iOS CSS :active style -->
   <body ontouchstart="">

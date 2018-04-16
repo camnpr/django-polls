@@ -31,7 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-	'polls.apps.PollsConfig',
+	'polls.apps.PollsConfig', # AppDirectoriesFinder 查找器， 为什么省略polls也可以找到目录
+    # 你的样式表路径应是 polls/static/polls/style.css。
+    # 因为 AppDirectoriesFinder 的存在，
+    # 你可以在 Django 中简单地使用以 polls/style.css 的形式引用此文件，
+    # 类似你引用模板路径的方式。
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +59,9 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # 是一个包含多个系统目录的文件列表，用于在载入 Django 模板时使用，是一个待搜索路径。
+        # 后台模板在根目录下的，template/admin/***，可以重写已有的网页，
+        # 系统的目录：C:\Users\红伟\AppData\Local\Programs\Python\Python36\Lib\site-packages\django\contrib\admin\templates\admin
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,9 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans' # 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai' # 'UTC'
 
 USE_I18N = True
 
